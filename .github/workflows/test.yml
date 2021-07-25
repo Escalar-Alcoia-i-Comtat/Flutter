@@ -1,0 +1,15 @@
+name: Test Flutter
+on: pull_request
+jobs:
+  build-web:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: 'stable'
+      - run: |
+          cd eaic_flutter
+          flutter pub get
+          flutter test
