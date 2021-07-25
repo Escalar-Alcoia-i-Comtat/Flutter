@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "escalaralcoiaicomtat"
+  },
+  "targets": {
+    "escalaralcoiaicomtat": {
+      "hosting": {
+        "mobile": [
+          "escalaralcoiaicomtat-mobile"
+        ]
+      }
+    }
   }
 }
