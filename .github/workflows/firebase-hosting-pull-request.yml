@@ -15,11 +15,12 @@ jobs:
       - uses: subosito/flutter-action@v1
         with:
           channel: 'stable'
-      - run: cd eaic_flutter
-      - run: flutter pub get
-      - run: flutter test
-      - run: flutter build web --web-renderer canvaskit --release
-      - run: cp -r --remove-destination build/web/* ../eaic_mobile
+      - run: |
+          cd eaic_flutter
+          flutter pub get
+          flutter test
+          flutter build web --web-renderer canvaskit --release
+          cp -r --remove-destination build/web/* ../eaic_mobile
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
