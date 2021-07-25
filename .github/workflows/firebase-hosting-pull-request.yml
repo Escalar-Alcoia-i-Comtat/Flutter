@@ -9,7 +9,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: bash scripts/build.sh
+      - uses: actions/setup-java@v1
+        with:
+          java-version: '12.x'
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: 'stable'
+      - run: cd eaic_flutter
+      - run: flutter pub get
+      - run: flutter test
+      - run: flutter build web --web-renderer canvaskit --release
+      - run: cp -r --remove-destination build/web/* ../eaic_mobile
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
